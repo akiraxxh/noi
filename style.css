@@ -1,3 +1,4 @@
+/* Custom Font Definition */
 @font-face {
     font-family: 'HigherJump';
     src: url('Higher Jump.ttf') format('truetype');
@@ -26,6 +27,7 @@ body {
     min-height: 100vh;
 }
 
+/* Background & Overlays */
 .bg-container {
     position: fixed;
     top: 0;
@@ -34,6 +36,7 @@ body {
     height: 100%;
     z-index: -2;
     background: url('background.jpg') center/cover no-repeat;
+    transition: transform 0.1s ease-out;
 }
 
 .noise-overlay {
@@ -57,6 +60,7 @@ body {
     z-index: -1;
 }
 
+/* Header */
 header {
     padding: 25px 45px;
     position: fixed;
@@ -81,13 +85,16 @@ header {
     font-size: 24px;
 }
 
+/* Main Layout */
 main {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
+/* Hero Section */
 .hero-content {
     text-align: center;
     width: 100%;
@@ -132,18 +139,31 @@ main {
     text-transform: uppercase;
 }
 
-.btn-discord {
+/* Buttons Container */
+.cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Shared Button Base */
+.btn-discord, .btn-members {
     display: inline-block;
-    padding: 18px 55px;
+    padding: 18px 45px;
     color: var(--text-white);
-    border: 1px solid var(--accent-color);
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
     text-decoration: none;
     font-weight: bold;
     letter-spacing: 3px;
     font-size: 14px;
     transition: 0.4s;
+    backdrop-filter: blur(4px);
+    min-width: 200px;
+}
+
+.btn-discord {
+    border: 1px solid var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .btn-discord:hover {
@@ -151,11 +171,97 @@ main {
     box-shadow: 0 0 30px var(--accent-color);
 }
 
+.btn-members {
+    border: 1px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-members:hover {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Members Page Specific Styles --- */
+.members-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 100px; /* Header space */
+    padding: 40px 20px;
+}
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.member-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    text-align: left;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 45, 85, 0.05);
+    transform: translateY(-5px);
+}
+
+.member-name {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.member-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.member-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.member-links a:hover {
+    color: #fff;
+}
+
+.link-twitch:hover { color: #9146ff !important; }
+.link-youtube:hover { color: #ff0000 !important; }
+
+/* Footer */
 footer {
-    position: fixed;
-    bottom: 20px;
+    position: relative; /* Fixedから変更（コンテンツ量に対応） */
+    padding: 40px 0 20px;
     width: 100%;
     text-align: center;
     font-size: 10px;
     color: #555;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-discord, .btn-members {
+        width: 100%;
+        max-width: 300px;
+    }
 }
